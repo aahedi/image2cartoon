@@ -1,49 +1,64 @@
-<html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Image2Cartoon by: Aahedi</title>
+<meta name='description' content='Convert Image to Cartoon'>
+<meta name='author' content='Aahedi'>
 <style>
     body {
-    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' height='240px' width='330px'> \
+        background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' height='240px' width='330px'> \
     <rect x='5' y='5%' rx='25' width='320' height='200' style='stroke:white; fill:#aaa; fill-opacity: 0.1; stroke-width: 5px;stroke-dasharray:10; stroke-linecap=round; '/> \
     <text x='15%' y='40%' fill='white' font-size='40'>Drop/Paste or</text> \
     <text x='15%' y='60%' fill='white' font-size='40'>Select Image</text></svg>");
-    background-attachment:fixed;
-	background-repeat: no-repeat;
-    background-position: center;
-	background-color:#eee;
-}
-.content {
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-color: #ccc;
+    }
+    
+    .content {
         width: 100%;
         height: 100%;
         top: 15%;
-        left: 25%
-        right: 25%;
+        left: 25% right: 25%;
         text-align: center;
         position: fixed;
-}
-.content #image{
-height:70%;
-z-index:1;
-position: relative;
-}
-#file-upload{
-    top: -30%;
-    position: relative;
-}
-.upload{
-    top: -40.5%;
-    position: relative;
-    background: rgba(255, 255, 255, 0);
-    padding: 100px 165px;
-    left: 15px;
-}
+		user-select: none;
+    }
+    
+    .content #image {
+        height: 70%;
+        z-index: 1;
+        position: relative;
+    }
+    
+    #file-upload {
+        top: -30%;
+        position: relative;
+    }
+    
+    .upload {
+        top: -40.5%;
+        position: relative;
+        background: rgba(255, 255, 255, 0);
+        padding: 100px 165px;
+        left: 15px;
+    }
 </style>
 
 <body>
     <div class='content'>
-        <img id="image1" hidden />
-        <img id="image2" hidden />
-        <img id="image3" hidden />
-        <img id="image" /><br><br>
-        <input id="file-upload" type="file" accept="image/*" hidden /><label for="file-upload" class="upload"></label>
+        <img id="image1" hidden/>
+        <img id="image2" hidden/>
+        <img id="image3" hidden/>
+        <img id="image" />
+        <br>
+        <br>
+        <input id="file-upload" type="file" accept="image/*" hidden/>
+        <label for="file-upload" class="upload"></label>
     </div>
     <script src="glfx.js"></script>
     <script>
@@ -126,7 +141,7 @@ position: relative;
             }
         });
         document.body.addEventListener("mouseout", function(event) {
-            document.body.style.backgroundColor = '#eee';
+            //document.body.style.backgroundColor = '#ddd';
         });
 
         document.addEventListener('DOMContentLoaded', function() {
@@ -197,7 +212,6 @@ position: relative;
             dropZone.addEventListener('dragover', handleDrag, false);
             dropZone.addEventListener('drop', handleDrop, false);
 
-
             //Fungsi tombol upload			    
             var readURL = function(input) {
                 if (input.files && input.files[0]) {
@@ -224,5 +238,4 @@ position: relative;
         });
     </script>
 </body>
-
 </html>
