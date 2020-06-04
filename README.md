@@ -1,7 +1,7 @@
 # Image2Cartoon
 Convert Image to Cartoon
 
-Live Demo: https://aahedi.github.io/Image2Cartoon
+Live Demo: https://aahedi.github.io/image2cartoon
 
 Credit Library
  * glfx.js
