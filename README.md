@@ -4,7 +4,8 @@ Convert Image to Cartoon
 Live Demo: https://aahedi.github.io/image2cartoon
 
 Credit Library
+ * downscale.js
+ * https://ytiurin.github.io/downscale/
  * glfx.js
- * http://evanw.github.com/glfx.js/
- * Copyright 2011 Evan Wallace
+ * https://evanw.github.com/glfx.js/
  * Released under the MIT license
