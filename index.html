@@ -17,6 +17,9 @@
         background-repeat: no-repeat;
         background-position: center;
         background-color: #ccc;
+		width: 100%;
+		padding: 0;
+		margin: 0;
     }
     
     .content {
@@ -33,7 +36,7 @@
         height: 70%;
         z-index: 1;
         position: relative;
-	max-width: -webkit-fill-available;
+		max-width: -webkit-fill-available;
     }
     
     #file-upload {
@@ -64,8 +67,8 @@
         <input id="file-upload" type="file" accept="image/*" hidden/>
         <label for="file-upload" class="upload"></label>
     </div>
-    <script src="downscale.js"></script>
-    <script src="glfx.js"></script>
+	<script src="global/js/downscale.js"></script>
+	<script src="global/js/glfx.js"></script>
     <script>
         function gbr_ink(sourceID, resultID) {
             var canvas = fx.canvas();
@@ -223,12 +226,24 @@
                     var reader = new FileReader();
 
                     reader.onload = function(e) {
-                        document.getElementById('image1').src = e.target.result;
+					  var img = new Image();
 
-                        setTimeout(function() {
-                            gbr_contrast('image1', 'image2');
-                        }, 2);
-                    }
+					  img.onload = function() {
+						var canvas = document.createElement('canvas');
+						var ctx = canvas.getContext('2d');
+						canvas.width = 720;
+						canvas.height = canvas.width * (img.height / img.width);
+						ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+						var data = canvas.toDataURL('image/png');
+						
+										document.getElementById('image1').src = data;
+
+										setTimeout(function() {
+											gbr_contrast('image1', 'image2');
+										}, 2);
+									}
+					  img.src = e.target.result;
+					}
 
                     reader.readAsDataURL(input.files[0]);
                 }
@@ -236,11 +251,26 @@
 
             document.getElementById('file-upload').addEventListener('change', function() {
                 readURL(this);
+				//filesChanged(this.files)
             });
             /*document.getElementById('upload-button').addEventListener('click', function () {
         readURL(this);
 	});*/
         });
+		
+function filesChanged(files){
+  for (var i = 0; i < files.length; i++) {
+    downscale(files[i], 720, 0).
+    then(function(dataURL) {
+                        document.getElementById('image1').src = dataURL;
+
+                        setTimeout(function() {
+                            gbr_contrast('image1', 'image2');
+                        }, 2);
+	  
+    })
+  }
+}
     </script>
 </body>
 </html>
